@@ -5,11 +5,11 @@ public class PosterManager {
 
     public PosterManager(int limitMovies) {
 
-        this.limitManager = limitMovies - 1;
+        this.limitManager = limitMovies;
     }
 
     public PosterManager() {
-
+    this.limitManager = 10;
     }
 
     public String[] getMovies() {
@@ -22,10 +22,8 @@ public class PosterManager {
     public void save(String movie) {
         String[] tmp = new String[movies.length + 1];
         for (int i = 0; i < movies.length; i++) {
-            if (movies.length <= limitManager) {
                 tmp[i] = movies[i];
             }
-        }
         tmp[tmp.length - 1] = movie;
         movies = tmp;
     }
@@ -35,8 +33,8 @@ public class PosterManager {
     }
 
     public String [] findLast () {
-        int resultLenght =0;
-        if (resultLenght < limitManager) {
+        int resultLenght=0;
+        if (movies.length < limitManager) {
             resultLenght = movies.length;
         } else {
             resultLenght = limitManager;

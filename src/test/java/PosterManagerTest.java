@@ -64,9 +64,28 @@ class PosterManagerTest {
         String[] actual = repo.findAll();
         Assertions.assertArrayEquals(expected, actual);
     }
-    @Test
+        @Test
     public void findLast() {
         PosterManager repo = new PosterManager();
+        repo.save(movies9);
+        repo.save(movies8);
+        repo.save(movies7);
+        repo.save(movies6);
+        repo.save(movies5);
+        repo.save(movies4);
+        repo.save(movies3);
+        repo.save(movies2);
+        repo.save(movies1);
+        repo.save(movies0);
+        String[] expected = {movies0, movies1, movies2, movies3,movies4, movies5, movies6, movies7,movies8, movies9};
+        String[] actual = repo.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void findLastAboveLimit() {
+        PosterManager repo = new PosterManager(4);
+        repo.save(movies4);
         repo.save(movies3);
         repo.save(movies2);
         repo.save(movies1);
@@ -75,4 +94,25 @@ class PosterManagerTest {
         String[] actual = repo.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    public void findLastBelowLimit() {
+        PosterManager repo = new PosterManager(4);
+        repo.save(movies2);
+        repo.save(movies1);
+        repo.save(movies0);
+        String[] expected = {movies0, movies1, movies2};
+        String[] actual = repo.findLast();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
